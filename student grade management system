@@ -1,0 +1,81 @@
+# Initialising the dictionary
+student_grades = {}
+
+# Add a new student
+def add_student(name, grade):
+    student_grades[name] = grade
+    print(f"Added {name} with a grade of {grade}")
+
+# Update a student
+def update_student(name, grade):
+    if name in student_grades:
+        student_grades[name] = grade
+        print(f"{name}'s marks have been updated to {grade}")
+    else:
+        print(f"{name} is not found!")
+
+# Delete a student
+def delete_student(name):
+    if name in student_grades:
+        del student_grades[name]
+        print(f"{name} has been successfully deleted")
+    else:
+        print(f"{name} is not found!")
+
+# View all students
+def display_all_students():
+    if student_grades:
+        print("\nList of Students and Grades:")
+        for name, grade in student_grades.items():
+            print(f"{name} : {grade}")
+    else:
+        print("No students found or added.")
+
+# Main function
+def main():
+    while True:
+        print("\nStudent Grades Management System")
+        print("1. Add Student")
+        print("2. Update Student")
+        print("3. Delete Student")
+        print("4. View All Students")
+        print("5. Exit")
+
+        try:
+            choice = int(input("Enter your choice (1-5): "))
+        except ValueError:
+            print("Invalid input! Please enter a number from 1 to 5.")
+            continue
+
+        if choice == 1:
+            name = input("Enter student name: ").strip()
+            try:
+                grade = int(input("Enter student grade: "))
+                add_student(name, grade)
+            except ValueError:
+                print("Grade must be a number.")
+
+        elif choice == 2:
+            name = input("Enter student name: ").strip()
+            try:
+                grade = int(input("Enter new grade: "))
+                update_student(name, grade)
+            except ValueError:
+                print("Grade must be a number.")
+
+        elif choice == 3:
+            name = input("Enter student name: ").strip()
+            delete_student(name)
+
+        elif choice == 4:
+            display_all_students()
+
+        elif choice == 5:
+            print("Exiting the program. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number from 1 to 5.")
+
+# Run the program
+main()
